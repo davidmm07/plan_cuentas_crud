@@ -6,7 +6,7 @@ import (
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/lib/pq"
-	_ "github.com/udistrital/presupuesto_crud/routers"
+	_ "github.com/udistrital/plan_cuentas_crud/routers"
 	"github.com/udistrital/utils_oas/responseformat"
 
 	"github.com/astaxie/beego"

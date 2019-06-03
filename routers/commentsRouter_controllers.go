@@ -7,7 +7,7 @@ import (
 
 func init() {
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"],
         beego.ControllerComments{
             Method: "Post",
             Router: `/`,
@@ -16,7 +16,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"],
         beego.ControllerComments{
             Method: "GetAll",
             Router: `/`,
@@ -25,7 +25,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"],
         beego.ControllerComments{
             Method: "GetOne",
             Router: `/:id`,
@@ -34,7 +34,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"],
         beego.ControllerComments{
             Method: "Put",
             Router: `/:id`,
@@ -43,7 +43,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"],
         beego.ControllerComments{
             Method: "Delete",
             Router: `/:id`,
@@ -52,7 +52,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:ApropiacionController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:ApropiacionController"],
         beego.ControllerComments{
             Method: "AprobarPresupuesto",
             Router: `/AprobacionAsignacionInicial/`,
@@ -61,7 +61,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:Date"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:Date"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:Date"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:Date"],
         beego.ControllerComments{
             Method: "FechaActual",
             Router: `/FechaActual/:formato`,
@@ -70,7 +70,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:RubroController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"],
         beego.ControllerComments{
             Method: "Post",
             Router: `/`,
@@ -79,7 +79,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:RubroController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"],
         beego.ControllerComments{
             Method: "GetAll",
             Router: `/`,
@@ -88,7 +88,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:RubroController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"],
         beego.ControllerComments{
             Method: "GetOne",
             Router: `/:id`,
@@ -97,7 +97,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:RubroController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"],
         beego.ControllerComments{
             Method: "Put",
             Router: `/:id`,
@@ -106,7 +106,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/presupuesto_crud/controllers:RubroController"],
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"],
         beego.ControllerComments{
             Method: "Delete",
             Router: `/:id`,

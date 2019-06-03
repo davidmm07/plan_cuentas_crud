@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"testing"
 
-	_ "github.com/udistrital/presupuesto_crud/routers"
+	_ "github.com/udistrital/plan_cuentas_crud/routers"
 
 	"github.com/astaxie/beego"
 	. "github.com/smartystreets/goconvey/convey"

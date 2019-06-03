@@ -9,7 +9,7 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/udistrital/presupuesto_crud/controllers"
+	"github.com/udistrital/plan_cuentas_crud/controllers"
 )
 
 func init() {
