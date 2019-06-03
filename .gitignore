@@ -5,5 +5,5 @@ todo/todo
 *.exe
 *.exe~
 lastupdate.*
-presupuesto_crud
+plan_cuentas_crud
 custom.env

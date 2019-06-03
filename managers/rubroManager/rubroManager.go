@@ -2,8 +2,8 @@ package rubromanager
 
 import (
 	"github.com/astaxie/beego/orm"
-	appmessagemanager "github.com/udistrital/presupuesto_crud/managers/appMessageManager"
-	"github.com/udistrital/presupuesto_crud/models"
+	appmessagemanager "github.com/udistrital/plan_cuentas_crud/managers/appMessageManager"
+	"github.com/udistrital/plan_cuentas_crud/models"
 )
 
 func RubroRelationRegistrator(idParent int, Rubro *models.Rubro) {

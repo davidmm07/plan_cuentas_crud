@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/astaxie/beego"
-	"github.com/udistrital/presupuesto_crud/models"
+	"github.com/udistrital/plan_cuentas_crud/models"
 )
 
 // ApropiacionController operations for Apropiacion
