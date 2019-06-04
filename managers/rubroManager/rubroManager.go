@@ -14,7 +14,7 @@ func RubroRelationRegistrator(idParent int, Rubro *models.Rubro) {
 		o.Rollback()
 		panic(appmessagemanager.InsertErrorMessage())
 	}
-	relation := models.RubroRubro{}
+	relation := models.Rama{}
 	relation.RubroHijo = Rubro
 	relation.RubroPadre = &models.Rubro{}
 	relation.RubroPadre.Id = idParent
