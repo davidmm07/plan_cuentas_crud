@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 
+	appmessagemanager "github.com/udistrital/plan_cuentas_crud/managers/appMessageManager"
+	rubromanager "github.com/udistrital/plan_cuentas_crud/managers/rubroManager"
 	"github.com/udistrital/plan_cuentas_crud/models"
 
 	"github.com/astaxie/beego"
@@ -28,7 +30,6 @@ func (c *RubroController) URLMapping() {
 // Post ...
 // @Title Post
 // @Description create Rubro
-//@Param	parentId	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	body		body 	models.Rubro	true		"body for Rubro content"
 // @Success 201 {int} models.Rubro
 // @Failure 403 body is empty
