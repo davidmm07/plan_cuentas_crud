@@ -194,9 +194,6 @@ func (c *RamaController) Delete() {
 func (c *RamaController) DeleteRubroRelation() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := rubromanager.DeleteRubroRelation(id); err == nil {
-		c.Data["json"] = "OK"
-	} else {
-		c.Data["json"] = err.Error()
-	}
+	rubromanager.DeleteRubroRelation(id)
+	c.Data["json"] = "OK"
 }
