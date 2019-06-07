@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/udistrital/plan_cuentas_crud/models"
-
+	rubromanager "github.com/udistrital/plan_cuentas_crud/managers/rubroManager"
 	"github.com/astaxie/beego"
 )
 
@@ -171,7 +171,7 @@ func (c *RubroController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	//v, err1 := models.GetRubroById(id)
-	if err := models.DeleteRubro(id); err == nil {
+	if err := rubroManager.DeleteRubro(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err

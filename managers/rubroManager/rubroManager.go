@@ -62,7 +62,7 @@ func DeleteRubro(id int) {
 	// ascertain id exists in the database
 	o.Begin()
 	_, err := o.Read(&v)
-	if err != nil {
+	if err == nil {
 		qb, _ := orm.NewQueryBuilder("mysql")
 		qb.Select("id").
 			From("" + beego.AppConfig.String("PGschemas") + ".apropiacion").
