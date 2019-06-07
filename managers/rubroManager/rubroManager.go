@@ -26,3 +26,29 @@ func RubroRelationRegistrator(idParent int, Rubro *models.Rubro) {
 	o.Commit()
 
 }
+
+//DeleteRubroRelation Delete relation rubro_rubro by id
+func DeleteRubroRelation(id int) {
+	o := orm.NewOrm()
+	o.Begin()
+	v := RubroRubro{Id: id}
+	_, err:= o.Read(&v)
+	// ascertain id exists in the database
+	if err != nil {
+		o.Rollback()
+		panic(appmessagemanager.DeleteErrorMessage())
+	}
+	_, err:= o.Delete(&RubroRubro{Id: id})
+	if err != nil {
+		o.Rollback()
+		panic(appmessagemanager.DeleteErrorMessage())
+	} 
+	_, err =: o.Delete(v.RubroHijo)
+	if err != nil {
+		o.Rollback()
+		panic(appmessagemanager.DeleteErrorMessage())
+	}
+	o.Commit()
+
+	return
+}

@@ -6,8 +6,6 @@ import (
 	"strconv"
 	"strings"
 
-	appmessagemanager "github.com/udistrital/plan_cuentas_crud/managers/appMessageManager"
-	rubromanager "github.com/udistrital/plan_cuentas_crud/managers/rubroManager"
 	"github.com/udistrital/plan_cuentas_crud/models"
 
 	"github.com/astaxie/beego"

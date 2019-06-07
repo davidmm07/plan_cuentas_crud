@@ -148,7 +148,7 @@ func DeleteRubro(id int) (err error) {
 	o := orm.NewOrm()
 	v := Rubro{Id: id}
 	var apropiaciones []int
-	var rubrorubro []int
+	var rama []int
 	// ascertain id exists in the database
 	o.Begin()
 	if err = o.Read(&v); err == nil {
@@ -165,9 +165,9 @@ func DeleteRubro(id int) (err error) {
 					From("" + beego.AppConfig.String("PGschemas") + ".rubro_rubro").
 					//Where("rubro_padre=?").
 					Where("rubro_hijo=?")
-				if _, err = o.Raw(qb.String(), id).QueryRows(&rubrorubro); err == nil {
-					for _, idx := range rubrorubro {
-						if _, err = o.Delete(&RubroRubro{Id: idx}); err == nil {
+				if _, err = o.Raw(qb.String(), id).QueryRows(&rama); err == nil {
+					for _, idx := range rama {
+						if _, err = o.Delete(&Rama{Id: idx}); err == nil {
 
 						} else {
 							o.Rollback()
