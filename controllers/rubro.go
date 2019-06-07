@@ -171,10 +171,9 @@ func (c *RubroController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	//v, err1 := models.GetRubroById(id)
-	if err := rubroManager.DeleteRubro(id); err == nil {
+	if err := rubromanager.DeleteRubro(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err
 	}
-	c.ServeJSON()
 }

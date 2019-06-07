@@ -36,7 +36,7 @@ func (c *RamaController) URLMapping() {
 // @Failure 403 body is empty
 // @router / [post]
 func (c *RamaController) Post() {
-	var v models.Rama
+	var v models.Rubro
 	parentID := 0
 	var err error
 
@@ -50,7 +50,7 @@ func (c *RamaController) Post() {
 
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if parentID == 0 {
-			if _, err := models.AddRama(&v); err == nil {
+			if _, err := models.AddRubro(&v); err == nil {
 				c.Data["json"] = v
 			} else {
 				c.Data["json"] = err
@@ -59,7 +59,6 @@ func (c *RamaController) Post() {
 			rubromanager.RubroRelationRegistrator(parentID, &v)
 			c.Data["json"] = v
 		}
-
 	} else {
 		c.Data["json"] = err
 	}
@@ -195,7 +194,7 @@ func (c *RamaController) Delete() {
 func (c *RamaController) DeleteRubroRelation() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := rubroManager.DeleteRubroRelation(id); err == nil {
+	if err := rubromanager.DeleteRubroRelation(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
