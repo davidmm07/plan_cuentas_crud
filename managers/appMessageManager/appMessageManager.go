@@ -9,3 +9,8 @@ func InsertErrorMessage() string {
 func ParamsErrorMessage() string {
 	return "Some params cannot be converted"
 }
+
+// DeleteErrorMessage ... returns error message for DB insertion error.
+func DeleteErrorMessage() string {
+	return "DB Delete Error"
+}

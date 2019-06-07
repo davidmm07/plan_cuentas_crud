@@ -191,14 +191,11 @@ func (c *RamaController) Delete() {
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
-// @router /DeleteRubroRelation/:id/:ue [delete]
+// @router /DeleteRubroRelation/:id [delete]
 func (c *RamaController) DeleteRubroRelation() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	ueStr := c.Ctx.Input.Param(":ue")
-	ue, _ := strconv.Atoi(ueStr)
-	if err := models.DeleteRubroRelation(id); err == nil {
-		go genRubrosTreeFile(int(ue))
+	if err := rubroManager.DeleteRubroRelation(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
