@@ -21,8 +21,8 @@ func init() {
 func (m *ApropiacionTable_20190526_121612) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
 	m.SQL("ALTER TABLE apropiacion ADD CONSTRAINT fk_apropiacion_rubro FOREIGN KEY (rubro) REFERENCES rubro(id) MATCH FULL;")
-	m.SQL("ALTER TABLE rubro_rubro ADD CONSTRAINT fk_rubro_hijo FOREIGN KEY (rubro_hijo) REFERENCES rubro(id) MATCH FULL;")
-	m.SQL("ALTER TABLE rubro_rubro ADD CONSTRAINT fk_rubro_padre FOREIGN KEY (rubro_padre) REFERENCES rubro(id) MATCH FULL;")
+	m.SQL("ALTER TABLE rama ADD CONSTRAINT fk_rubro_hijo FOREIGN KEY (rubro_hijo) REFERENCES rubro(id) MATCH FULL;")
+	m.SQL("ALTER TABLE rama ADD CONSTRAINT fk_rubro_padre FOREIGN KEY (rubro_padre) REFERENCES rubro(id) MATCH FULL;")
 	m.SQL("ALTER TABLE apropiacion ADD CONSTRAINT fk_apropiacion_estado_apropiacion FOREIGN KEY (estado) REFERENCES estado_apropiacion(id) ON UPDATE CASCADE ON DELETE RESTRICT;")
 }
 
