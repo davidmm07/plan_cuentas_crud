@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"strings"
 
-	appmessagemanager "github.com/udistrital/plan_cuentas_crud/managers/appMessageManager"
 	rubromanager "github.com/udistrital/plan_cuentas_crud/managers/rubroManager"
 	"github.com/udistrital/plan_cuentas_crud/models"
 
@@ -30,34 +29,18 @@ func (c *RamaController) URLMapping() {
 // Post ...
 // @Title Post
 // @Description create Rama
-//@Param	parentId	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	body		body 	models.Rama	true		"body for Rama content"
 // @Success 201 {int} models.Rama
 // @Failure 403 body is empty
 // @router / [post]
 func (c *RamaController) Post() {
-	var v models.Rubro
-	parentID := 0
-	var err error
-
-	if parentIdSTR := c.GetString("parentId"); parentIdSTR != "" {
-		parentID, err = strconv.Atoi(parentIdSTR)
-		if err != nil {
-			beego.Error(err.Error())
-			panic(appmessagemanager.ParamsErrorMessage())
-		}
-	}
+	var v models.Rama
 
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if parentID == 0 {
-			if _, err := models.AddRubro(&v); err == nil {
-				c.Data["json"] = v
-			} else {
-				c.Data["json"] = err
-			}
-		} else {
-			rubromanager.RubroRelationRegistrator(parentID, &v)
+		if _, err := models.AddRama(&v); err == nil {
 			c.Data["json"] = v
+		} else {
+			c.Data["json"] = err
 		}
 	} else {
 		c.Data["json"] = err
