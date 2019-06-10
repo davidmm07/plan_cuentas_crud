@@ -10,9 +10,12 @@ import (
 )
 
 type EstadoApropiacion struct {
-	Id          int    `orm:"column(id);pk"`
-	Nombre      string `orm:"column(nombre);null"`
-	Descripcion string `orm:"column(descripcion);null"`
+	Id                int    `orm:"column(id);pk"`
+	Nombre            string `orm:"column(nombre)"`
+	Descripcion       string `orm:"column(descripcion)"`
+	CodigoAbreviacion string `orm:"column(codigo_abreviacion)"`
+	NumeroOrden       int    `orm:"column(numero_orden);null"`
+	Activo            bool   `orm:"column(activo)"`
 }
 
 func (t *EstadoApropiacion) TableName() string {

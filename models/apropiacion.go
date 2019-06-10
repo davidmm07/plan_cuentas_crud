@@ -11,11 +11,11 @@ import (
 )
 
 type Apropiacion struct {
-	Id       int                `orm:"column(id);pk;auto"`
-	Vigencia float64            `orm:"column(vigencia)"`
-	Rubro    *Rubro             `orm:"column(rubro);rel(fk)"`
-	Valor    float64            `orm:"column(valor)"`
-	Estado   *EstadoApropiacion `orm:"column(estado);rel(fk)"`
+	Id                  int                `orm:"column(id);pk"`
+	Vigencia            int                `orm:"column(vigencia)"`
+	Valor               float64            `orm:"column(valor)"`
+	IdEstadoApropiacion *EstadoApropiacion `orm:"column(id_estado_apropiacion);rel(fk)"`
+	IdRubro             *Rubro             `orm:"column(id_rubro);rel(fk)"`
 }
 
 func (t *Apropiacion) TableName() string {
@@ -61,7 +61,6 @@ func GetAllApropiacion(query map[string]string, exclude map[string]string, field
 			qs = qs.Filter(k, v)
 		}
 	}
-
 	// exclude k=v
 	for k, v := range exclude {
 		// rewrite dot-notation to Object__Attribute
@@ -72,7 +71,6 @@ func GetAllApropiacion(query map[string]string, exclude map[string]string, field
 			qs = qs.Exclude(k, v)
 		}
 	}
-
 	// order by:
 	var sortFields []string
 	if len(sortby) != 0 {
