@@ -5,11 +5,13 @@ import (
 	"errors"
 	"strconv"
 	"strings"
+	"time"
 
-	"github.com/udistrital/plan_cuentas_crud/models"
+	"github.com/astaxie/beego"
+	"github.com/globalsign/mgo"
 	appmessagemanager "github.com/udistrital/plan_cuentas_crud/managers/appMessageManager"
 	rubromanager "github.com/udistrital/plan_cuentas_crud/managers/rubroManager"
-	"github.com/astaxie/beego"
+	"github.com/udistrital/plan_cuentas_crud/models"
 )
 
 // RubroController operations for Rubro
@@ -63,7 +65,6 @@ func (c *RubroController) Post() {
 		c.Data["json"] = err
 	}
 }
-
 
 // GetOne ...
 // @Title Get One
@@ -190,6 +191,71 @@ func (c *RubroController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	//v, err1 := models.GetRubroById(id)
-	rubromanager.DeleteRubro(id) 
+	rubromanager.DeleteRubro(id)
 	c.Data["json"] = "OK"
+}
+
+// GetArbolMigracion ...
+// @Title Get Arbol Migracion
+// @Description get arbol migracion
+// @Success 200 {object} models.Rubro
+// @Failure 403 :id is empty
+// @router /GetArbolMigracion/:a [get]
+func (c *RubroController) GetArbolMigracion() {
+	v, err := models.ArbolRubrosMigracion()
+
+	if err != nil {
+		beego.Info("err: ", err.Error())
+	}
+
+	// beego.Info(v)
+
+	// absPath, _ := filepath.Abs("file.txt")
+	//
+	// // d1 := []byte(v)
+	// d1, _ := json.Marshal(v)
+
+	info := &mgo.DialInfo{
+		Addrs:    []string{"financiera_mongo_db"},
+		Timeout:  60 * time.Second,
+		Database: "admin",
+		Username: "test",
+		Password: "test",
+	}
+
+	session, err := mgo.DialWithInfo(info)
+
+	// session, err := mgo.Dial("127.0.0.1:27016")
+	session.SetMode(mgo.Monotonic, true)
+	w := session.DB("test").C("arbol_rubro")
+
+	// err = ioutil.WriteFile(absPath, d1, 0644)
+	// f, err := os.Create(absPath)
+	for _, v1 := range v {
+		//beego.Info(v1)
+		err = w.Insert(v1)
+		if err != nil {
+			panic(err)
+		}
+		// } else {
+		// 	// fmt.Println(err)
+		// }
+	}
+	defer session.Close()
+
+	beego.Info("migracion...")
+	// n3, err := f.WriteString(string(d1))
+	//
+	//   fmt.Printf("wrote %d bytes\n", n3)
+	// if err == nil {
+	// }
+
+	if err != nil {
+		beego.Error("error controlador")
+		c.Data["json"] = err.Error()
+	} else {
+		c.Data["json"] = v
+	}
+	// c.Data["json"] = v
+	c.ServeJSON()
 }

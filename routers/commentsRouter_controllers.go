@@ -169,4 +169,13 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"] = append(beego.GlobalControllerRouter["github.com/udistrital/plan_cuentas_crud/controllers:RubroController"],
+        beego.ControllerComments{
+            Method: "GetArbolMigracion",
+            Router: `/GetArbolMigracion/:a`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
 }
