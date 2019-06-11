@@ -6,7 +6,10 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/astaxie/beego/logs"
+
 	"github.com/astaxie/beego"
+	apropiacionmanager "github.com/udistrital/plan_cuentas_crud/managers/apropiacionManager"
 	"github.com/udistrital/plan_cuentas_crud/models"
 )
 
@@ -213,5 +216,10 @@ func (c *ApropiacionController) AprobarPresupuesto() {
 	if ue, err = c.GetInt("UnidadEjecutora"); err != nil {
 		panic(err.Error())
 	}
-	beego.Debug(vigencia, ue)
+	if err := apropiacionmanager.AprobarPresupuesto(ue, vigencia); err == nil {
+		logs.Info("aprobar presupuesto")
+	} else {
+		panic(err.Error())
+	}
+
 }
