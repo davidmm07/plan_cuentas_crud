@@ -14,3 +14,8 @@ func ParamsErrorMessage() string {
 func DeleteErrorMessage() string {
 	return "DB Delete Error"
 }
+
+//AprobarpresupuestoErrorMessage
+func AprobarPresupuestoErrorMessage() string {
+	return "Error in AprobarPresupuesto function"
+}
