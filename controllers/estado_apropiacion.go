@@ -40,9 +40,11 @@ func (c *EstadoApropiacionController) Post() {
 			c.Data["json"] = v
 		} else {
 			c.Data["json"] = err.Error()
+			panic(err.Error())
 		}
 	} else {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
 	}
 
 }
@@ -60,6 +62,7 @@ func (c *EstadoApropiacionController) GetOne() {
 	v, err := models.GetEstadoApropiacionById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
 	} else {
 		c.Data["json"] = v
 	}
@@ -123,6 +126,7 @@ func (c *EstadoApropiacionController) GetAll() {
 	l, err := models.GetAllEstadoApropiacion(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
 	} else {
 		c.Data["json"] = l
 	}
@@ -146,9 +150,11 @@ func (c *EstadoApropiacionController) Put() {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
+			panic(err.Error())
 		}
 	} else {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
 	}
 
 }
@@ -167,6 +173,7 @@ func (c *EstadoApropiacionController) Delete() {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
 	}
 
 }

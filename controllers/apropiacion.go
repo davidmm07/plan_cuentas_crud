@@ -39,10 +39,12 @@ func (c *ApropiacionController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err
+			c.Data["json"] = err.Error()
+			panic(err.Error())
 		}
 	} else {
-		c.Data["json"] = err
+		c.Data["json"] = err.Error()
+		panic(err.Error())
 	}
 
 }
@@ -60,6 +62,8 @@ func (c *ApropiacionController) GetOne() {
 	v, err := models.GetApropiacionById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
+
 	} else {
 		c.Data["json"] = v
 	}
@@ -139,6 +143,8 @@ func (c *ApropiacionController) GetAll() {
 	l, err := models.GetAllApropiacion(query, exclude, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
+
 	} else {
 		c.Data["json"] = l
 	}
@@ -160,10 +166,14 @@ func (c *ApropiacionController) Put() {
 		if err := models.UpdateApropiacionById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err
+			c.Data["json"] = err.Error()
+			panic(err.Error())
+
 		}
 	} else {
-		c.Data["json"] = err
+		c.Data["json"] = err.Error()
+		panic(err.Error())
+
 	}
 
 }
@@ -182,6 +192,8 @@ func (c *ApropiacionController) Delete() {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
+
 	}
 
 }

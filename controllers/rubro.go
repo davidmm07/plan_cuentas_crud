@@ -6,10 +6,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/udistrital/plan_cuentas_crud/models"
+	"github.com/astaxie/beego"
 	appmessagemanager "github.com/udistrital/plan_cuentas_crud/managers/appMessageManager"
 	rubromanager "github.com/udistrital/plan_cuentas_crud/managers/rubroManager"
-	"github.com/astaxie/beego"
+	"github.com/udistrital/plan_cuentas_crud/models"
 )
 
 // RubroController operations for Rubro
@@ -63,7 +63,6 @@ func (c *RubroController) Post() {
 		c.Data["json"] = err
 	}
 }
-
 
 // GetOne ...
 // @Title Get One
@@ -190,6 +189,6 @@ func (c *RubroController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	//v, err1 := models.GetRubroById(id)
-	rubromanager.DeleteRubro(id) 
+	rubromanager.DeleteRubro(id)
 	c.Data["json"] = "OK"
 }

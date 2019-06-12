@@ -28,8 +28,8 @@ func AprobarPresupuesto(UnidadEjecutora int, Vigencia int) {
 	o.Begin()
 	qb, _ := orm.NewQueryBuilder("mysql")
 	qb2, _ := orm.NewQueryBuilder("mysql")
-	qb2.Select("id").From(beego.AppConfig.String("PGschemas") + ".rubro").Where("unidad_ejecutora = ?")
-	qb.Update(beego.AppConfig.String("PGschemas") + ".apropiacion").Set("estado = ?").Where("vigencia = ? AND rubro in (" + qb2.String() + ")")
+	qb2.Select("id").From(beego.AppConfig.String("PGschemas") + ".id_rubro").Where("unidad_ejecutora = ?")
+	qb.Update(beego.AppConfig.String("PGschemas") + ".apropiacion").Set("estado = ?").Where("vigencia = ? AND id_rubro in (" + qb2.String() + ")")
 	_, err := o.Raw(qb.String(), 2, Vigencia, UnidadEjecutora).Exec()
 	if err != nil {
 		o.Rollback()
