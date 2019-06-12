@@ -815,14 +815,14 @@
             "title": "Apropiacion",
             "type": "object",
             "properties": {
+                "EstadoApropiacionId": {
+                    "$ref": "#/definitions/models.EstadoApropiacion"
+                },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "IdEstadoApropiacion": {
-                    "$ref": "#/definitions/models.EstadoApropiacion"
-                },
-                "IdRubro": {
+                "RubroId": {
                     "$ref": "#/definitions/models.Rubro"
                 },
                 "Valor": {

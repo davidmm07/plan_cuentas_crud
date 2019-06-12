@@ -13,8 +13,8 @@ type Apropiacion struct {
 	Id                  int                `orm:"column(id);pk"`
 	Vigencia            int                `orm:"column(vigencia)"`
 	Valor               float64            `orm:"column(valor)"`
-	IdEstadoApropiacion *EstadoApropiacion `orm:"column(id_estado_apropiacion);rel(fk)"`
-	IdRubro             *Rubro             `orm:"column(rubro_id);rel(fk)"`
+	EstadoApropiacionId *EstadoApropiacion `orm:"column(estado_apropiacion_id);rel(fk)"`
+	RubroId             *Rubro             `orm:"column(rubro_id);rel(fk)"`
 }
 
 func (t *Apropiacion) TableName() string {
