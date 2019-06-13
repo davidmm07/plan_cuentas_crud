@@ -35,7 +35,8 @@ docker network create back_end
 docker-compose up --build
 ```
 - Al finalizar se podran consumir los servicios del API en los puertos definidos en **.env** y **custom.env** actualmente 8080
-
+# Licencia
+[licencia](LICENSE)
 
 
 
