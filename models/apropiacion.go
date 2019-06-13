@@ -10,7 +10,7 @@ import (
 )
 
 type Apropiacion struct {
-	Id                  int                `orm:"column(id);pk"`
+	Id                  int                `orm:"column(id);pk;auto"`
 	Vigencia            int                `orm:"column(vigencia)"`
 	Valor               float64            `orm:"column(valor)"`
 	EstadoApropiacionId *EstadoApropiacion `orm:"column(estado_apropiacion_id);rel(fk)"`
@@ -49,7 +49,7 @@ func GetApropiacionById(id int) (v *Apropiacion, err error) {
 func GetAllApropiacion(query map[string]string, exclude map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Apropiacion))
+	qs := o.QueryTable(new(Apropiacion)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute

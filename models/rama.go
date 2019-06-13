@@ -10,7 +10,7 @@ import (
 )
 
 type Rama struct {
-	Id         int    `orm:"auto;column(id);pk"`
+	Id         int    `orm:"auto;column(id);pk;auto"`
 	RubroPadre *Rubro `orm:"column(rubro_padre);rel(fk)"`
 	RubroHijo  *Rubro `orm:"column(rubro_hijo);rel(fk)"`
 }
@@ -47,7 +47,7 @@ func GetRamaById(id int) (v *Rama, err error) {
 func GetAllRama(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Rama))
+	qs := o.QueryTable(new(Rama)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
