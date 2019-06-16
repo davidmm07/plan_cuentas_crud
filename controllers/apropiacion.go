@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/astaxie/beego"
+	apropiacionmanager "github.com/udistrital/plan_cuentas_crud/managers/apropiacionManager"
 	"github.com/udistrital/plan_cuentas_crud/models"
 )
 
@@ -38,12 +39,14 @@ func (c *ApropiacionController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err
+			c.Data["json"] = err.Error()
+			panic(err.Error())
 		}
 	} else {
-		c.Data["json"] = err
+		c.Data["json"] = err.Error()
+		panic(err.Error())
 	}
-	c.ServeJSON()
+
 }
 
 // GetOne ...
@@ -59,10 +62,12 @@ func (c *ApropiacionController) GetOne() {
 	v, err := models.GetApropiacionById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
+
 	} else {
 		c.Data["json"] = v
 	}
-	c.ServeJSON()
+
 }
 
 // GetAll ...
@@ -113,7 +118,7 @@ func (c *ApropiacionController) GetAll() {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
 				c.Data["json"] = errors.New("Error: invalid query key/value pair")
-				c.ServeJSON()
+
 				return
 			}
 			k, v := kv[0], kv[1]
@@ -127,7 +132,7 @@ func (c *ApropiacionController) GetAll() {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
 				c.Data["json"] = errors.New("Error: invalid exclude key/value pair")
-				c.ServeJSON()
+
 				return
 			}
 			k, v := kv[0], kv[1]
@@ -138,6 +143,8 @@ func (c *ApropiacionController) GetAll() {
 	l, err := models.GetAllApropiacion(query, exclude, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
+
 	} else {
 		c.Data["json"] = l
 	}
@@ -159,12 +166,16 @@ func (c *ApropiacionController) Put() {
 		if err := models.UpdateApropiacionById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err
+			c.Data["json"] = err.Error()
+			panic(err.Error())
+
 		}
 	} else {
-		c.Data["json"] = err
+		c.Data["json"] = err.Error()
+		panic(err.Error())
+
 	}
-	c.ServeJSON()
+
 }
 
 // Delete ...
@@ -181,8 +192,10 @@ func (c *ApropiacionController) Delete() {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
+
 	}
-	c.ServeJSON()
+
 }
 
 // AprobarPresupuesto ...
@@ -204,7 +217,7 @@ func (c *ApropiacionController) AprobarPresupuesto() {
 		if r := recover(); r != nil {
 			c.Data["json"] = r
 		}
-		c.ServeJSON()
+
 	}()
 
 	if vigencia, err = c.GetInt("Vigencia"); err != nil {
@@ -213,5 +226,7 @@ func (c *ApropiacionController) AprobarPresupuesto() {
 	if ue, err = c.GetInt("UnidadEjecutora"); err != nil {
 		panic(err.Error())
 	}
-	beego.Debug(vigencia, ue)
+	apropiacionmanager.AprobarPresupuesto(ue, vigencia)
+	c.Data["json"] = "OK"
+
 }

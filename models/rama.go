@@ -10,7 +10,7 @@ import (
 )
 
 type Rama struct {
-	Id         int    `orm:"auto;column(id);pk"`
+	Id         int    `orm:"auto;column(id);pk;auto"`
 	RubroPadre *Rubro `orm:"column(rubro_padre);rel(fk)"`
 	RubroHijo  *Rubro `orm:"column(rubro_hijo);rel(fk)"`
 }
@@ -47,7 +47,7 @@ func GetRamaById(id int) (v *Rama, err error) {
 func GetAllRama(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Rama))
+	qs := o.QueryTable(new(Rama)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -146,29 +146,6 @@ func DeleteRama(id int) (err error) {
 		if num, err = o.Delete(&Rama{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
-	}
-	return
-}
-
-//DeleteRubroRelation Delete relation rama by id
-func DeleteRubroRelation(id int) (err error) {
-	o := orm.NewOrm()
-	o.Begin()
-	v := Rama{Id: id}
-	// ascertain id exists in the database
-	if err = o.Read(&v); err == nil {
-		if _, err = o.Delete(&Rama{Id: id}); err == nil {
-			if _, err = o.Delete(v.RubroHijo); err == nil {
-
-				o.Commit()
-			} else {
-				o.Rollback()
-			}
-		} else {
-			o.Rollback()
-		}
-	} else {
-		o.Rollback()
 	}
 	return
 }

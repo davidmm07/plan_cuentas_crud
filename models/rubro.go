@@ -10,7 +10,7 @@ import (
 )
 
 type Rubro struct {
-	Id              int    `orm:"auto;column(id);pk"`
+	Id              int    `orm:"auto;column(id);pk;auto"`
 	Organizacion    int    `orm:"column(organizacion)"`
 	Codigo          string `orm:"column(codigo)"`
 	Descripcion     string `orm:"column(descripcion);null"`
