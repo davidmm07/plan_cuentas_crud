@@ -68,7 +68,7 @@ func DeleteRubro(id int) {
 	if err == nil {
 		qb.Select("id").
 			From("" + beego.AppConfig.String("PGschemas") + ".apropiacion").
-			Where("rubro=?")
+			Where("rubro_id=?")
 	}
 	_, err = o.Raw(qb.String(), id).QueryRows(&apropiaciones)
 	if err != nil {
