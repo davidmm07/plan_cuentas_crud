@@ -29,5 +29,9 @@ func (m *ApropiacionTable_20190526_121612) Up() {
 // Reverse the migrations
 func (m *ApropiacionTable_20190526_121612) Down() {
 	// use m.SQL("DROP TABLE ...") to reverse schema update
+	m.SQL("ALTER TABLE apropiacion DROP CONSTRAINT fk_apropiacion_rubro ;")
+	m.SQL("ALTER TABLE rama DROP CONSTRAINT fk_rubro_hijo FOREIGN KEY ;")
+	m.SQL("ALTER TABLE rama DROP CONSTRAINT fk_rubro_padre FOREIGN KEY ;")
+	m.SQL("ALTER TABLE apropiacion DROP CONSTRAINT fk_apropiacion_estado_apropiacion ;")
 
 }
