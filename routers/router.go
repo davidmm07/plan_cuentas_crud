@@ -29,6 +29,11 @@ func init() {
 				&controllers.ApropiacionController{},
 			),
 		),
+		beego.NSNamespace("/estado_apropiacion",
+			beego.NSInclude(
+				&controllers.EstadoApropiacionController{},
+			),
+		),
 		beego.NSNamespace("/date",
 			beego.NSInclude(
 				&controllers.Date{},

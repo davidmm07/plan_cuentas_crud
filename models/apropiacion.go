@@ -6,16 +6,15 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 )
 
 type Apropiacion struct {
-	Id       int                `orm:"column(id);pk;auto"`
-	Vigencia float64            `orm:"column(vigencia)"`
-	Rubro    *Rubro             `orm:"column(rubro);rel(fk)"`
-	Valor    float64            `orm:"column(valor)"`
-	Estado   *EstadoApropiacion `orm:"column(estado);rel(fk)"`
+	Id                  int                `orm:"column(id);pk;auto"`
+	Vigencia            int                `orm:"column(vigencia)"`
+	Valor               float64            `orm:"column(valor)"`
+	EstadoApropiacionId *EstadoApropiacion `orm:"column(estado_apropiacion_id);rel(fk)"`
+	RubroId             *Rubro             `orm:"column(rubro_id);rel(fk)"`
 }
 
 func (t *Apropiacion) TableName() string {
@@ -50,7 +49,7 @@ func GetApropiacionById(id int) (v *Apropiacion, err error) {
 func GetAllApropiacion(query map[string]string, exclude map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Apropiacion))
+	qs := o.QueryTable(new(Apropiacion)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -61,7 +60,6 @@ func GetAllApropiacion(query map[string]string, exclude map[string]string, field
 			qs = qs.Filter(k, v)
 		}
 	}
-
 	// exclude k=v
 	for k, v := range exclude {
 		// rewrite dot-notation to Object__Attribute
@@ -72,7 +70,6 @@ func GetAllApropiacion(query map[string]string, exclude map[string]string, field
 			qs = qs.Exclude(k, v)
 		}
 	}
-
 	// order by:
 	var sortFields []string
 	if len(sortby) != 0 {
@@ -162,31 +159,5 @@ func DeleteApropiacion(id int) (err error) {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
-	return
-}
-
-func VigenciaApropiacion() (ml []int, err error) {
-	qb, _ := orm.NewQueryBuilder("mysql")
-	qb.Select("DISTINCT vigencia").
-		From("" + beego.AppConfig.String("PGschemas") + ".apropiacion")
-
-	sql := qb.String()
-	o := orm.NewOrm()
-	o.Raw(sql).QueryRows(&ml)
-
-	if len(ml) == 0 {
-		return nil, err
-	}
-	return ml, nil
-}
-
-//AprobarPresupuesto... Aprobacion de presupuesto (cambio de estado).
-func AprobarPresupuesto(UnidadEjecutora int, Vigencia int) (err error) {
-	o := orm.NewOrm()
-	qb, _ := orm.NewQueryBuilder("mysql")
-	qb2, _ := orm.NewQueryBuilder("mysql")
-	qb2.Select("id").From(beego.AppConfig.String("PGschemas") + ".rubro").Where("unidad_ejecutora = ?")
-	qb.Update(beego.AppConfig.String("PGschemas") + ".apropiacion").Set("estado = ?").Where("vigencia = ? AND rubro in (" + qb2.String() + ")")
-	_, err = o.Raw(qb.String(), 2, Vigencia, UnidadEjecutora).Exec()
 	return
 }

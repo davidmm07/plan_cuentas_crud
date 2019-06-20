@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"strings"
 
-	appmessagemanager "github.com/udistrital/plan_cuentas_crud/managers/appMessageManager"
 	rubromanager "github.com/udistrital/plan_cuentas_crud/managers/rubroManager"
 	"github.com/udistrital/plan_cuentas_crud/models"
 
@@ -30,36 +29,19 @@ func (c *RamaController) URLMapping() {
 // Post ...
 // @Title Post
 // @Description create Rama
-//@Param	parentId	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	body		body 	models.Rama	true		"body for Rama content"
 // @Success 201 {int} models.Rama
 // @Failure 403 body is empty
 // @router / [post]
 func (c *RamaController) Post() {
 	var v models.Rama
-	parentID := 0
-	var err error
-
-	if parentIdSTR := c.GetString("parentId"); parentIdSTR != "" {
-		parentID, err = strconv.Atoi(parentIdSTR)
-		if err != nil {
-			beego.Error(err.Error())
-			panic(appmessagemanager.ParamsErrorMessage())
-		}
-	}
 
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if parentID == 0 {
-			if _, err := models.AddRama(&v); err == nil {
-				c.Data["json"] = v
-			} else {
-				c.Data["json"] = err
-			}
-		} else {
-			rubromanager.RubroRelationRegistrator(parentID, &v)
+		if _, err := models.AddRama(&v); err == nil {
 			c.Data["json"] = v
+		} else {
+			c.Data["json"] = err
 		}
-
 	} else {
 		c.Data["json"] = err
 	}
@@ -191,16 +173,10 @@ func (c *RamaController) Delete() {
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
-// @router /DeleteRubroRelation/:id/:ue [delete]
+// @router /DeleteRubroRelation/:id [delete]
 func (c *RamaController) DeleteRubroRelation() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	ueStr := c.Ctx.Input.Param(":ue")
-	ue, _ := strconv.Atoi(ueStr)
-	if err := models.DeleteRubroRelation(id); err == nil {
-		go genRubrosTreeFile(int(ue))
-		c.Data["json"] = "OK"
-	} else {
-		c.Data["json"] = err.Error()
-	}
+	rubromanager.DeleteRubroRelation(id)
+	c.Data["json"] = "OK"
 }
