@@ -8,8 +8,9 @@
 package routers
 
 import (
-	"github.com/astaxie/beego"
 	"github.com/udistrital/plan_cuentas_crud/controllers"
+
+	"github.com/astaxie/beego"
 )
 
 func init() {
@@ -39,7 +40,24 @@ func init() {
 				&controllers.Date{},
 			),
 		),
-	)
 
+		beego.NSNamespace("/tipo_fuente_financiamiento",
+			beego.NSInclude(
+				&controllers.TipoFuenteFinanciamientoController{},
+			),
+		),
+
+		beego.NSNamespace("/fuente_financiamiento",
+			beego.NSInclude(
+				&controllers.FuenteFinanciamientoController{},
+			),
+		),
+
+		beego.NSNamespace("/fuente_financiamiento_apropiacion",
+			beego.NSInclude(
+				&controllers.FuenteFinanciamientoApropiacionController{},
+			),
+		),
+	)
 	beego.AddNamespace(ns)
 }
