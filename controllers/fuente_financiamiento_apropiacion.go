@@ -39,11 +39,13 @@ func (c *FuenteFinanciamientoApropiacionController) Post() {
 			c.Data["json"] = v
 		} else {
 			c.Data["json"] = err.Error()
+			panic(err.Error())
 		}
 	} else {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
 	}
-	c.ServeJSON()
+
 }
 
 // GetOne ...
@@ -59,10 +61,11 @@ func (c *FuenteFinanciamientoApropiacionController) GetOne() {
 	v, err := models.GetFuenteFinanciamientoApropiacionById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
 	} else {
 		c.Data["json"] = v
 	}
-	c.ServeJSON()
+
 }
 
 // GetAll ...
@@ -111,7 +114,7 @@ func (c *FuenteFinanciamientoApropiacionController) GetAll() {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
 				c.Data["json"] = errors.New("Error: invalid query key/value pair")
-				c.ServeJSON()
+
 				return
 			}
 			k, v := kv[0], kv[1]
@@ -122,10 +125,11 @@ func (c *FuenteFinanciamientoApropiacionController) GetAll() {
 	l, err := models.GetAllFuenteFinanciamientoApropiacion(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
 	} else {
 		c.Data["json"] = l
 	}
-	c.ServeJSON()
+
 }
 
 // Put ...
@@ -145,11 +149,13 @@ func (c *FuenteFinanciamientoApropiacionController) Put() {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
+			panic(err.Error())
 		}
 	} else {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
 	}
-	c.ServeJSON()
+
 }
 
 // Delete ...
@@ -166,6 +172,7 @@ func (c *FuenteFinanciamientoApropiacionController) Delete() {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
+		panic(err.Error())
 	}
-	c.ServeJSON()
+
 }
