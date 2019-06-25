@@ -20,7 +20,9 @@ func init() {
 // Run the migrations
 func (m *CrearEsquemaPlanCuentas_20190621_121431) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
-	m.SQL("CREATE SCHEMA plan_cuentas;")
+	m.SQL("CREATE SCHEMA IF NOT EXISTS plan_cuentas;")
+	m.SQL("ALTER SCHEMA plan_cuentas OWNER TO desarrollooas;")
+	m.SQL("SET search_path TO pg_catalog,public,plan_cuentas;")
 
 }
 

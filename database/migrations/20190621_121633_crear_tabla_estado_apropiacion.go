@@ -21,7 +21,7 @@ func init() {
 func (m *CrearTablaEstadoApropiacion_20190621_121633) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
 	m.SQL("CREATE TABLE plan_cuentas.estado_apropiacion (id serial NOT NULL,nombre varchar NOT NULL,descripcion varchar NOT NULL,codigo_abreviacion varchar NOT NULL,numero_orden integer,activo bool NOT NULL,CONSTRAINT pk_estado_apropiacion PRIMARY KEY (id));")
-
+	m.SQL("ALTER TABLE plan_cuentas.estado_apropiacion OWNER TO desarrollooas;")
 }
 
 // Reverse the migrations

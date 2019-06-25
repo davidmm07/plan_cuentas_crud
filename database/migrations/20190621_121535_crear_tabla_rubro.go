@@ -22,6 +22,7 @@ func (m *CrearTablaRubro_20190621_121535) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
 	m.SQL("CREATE TABLE plan_cuentas.rubro (id serial NOT NULL,organizacion integer NOT NULL,codigo varchar(50) NOT NULL,nombre varchar(250) NOT NULL,unidad_ejecutora integer NOT NULL,descripcion text,CONSTRAINT pk_rubro PRIMARY KEY (id),CONSTRAINT uq_organizacion_codigo_unidad_ejecutora_rubro UNIQUE (organizacion,unidad_ejecutora,codigo));")
 	m.SQL("ALTER TABLE plan_cuentas.rubro ADD CONSTRAINT ck_codigo_rubro CHECK (((codigo)::text ~ '^([0-9]+-)+[0-9]+$'::text))")
+	m.SQL("ALTER TABLE plan_cuentas.rubro OWNER TO desarrollooas;")
 
 }
 
