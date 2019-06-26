@@ -45,7 +45,7 @@ func (c *FuenteFinanciamientoController) Post() {
 		c.Data["json"] = err.Error()
 		panic(err.Error())
 	}
-	c.ServeJSON()
+
 }
 
 // GetOne ...
