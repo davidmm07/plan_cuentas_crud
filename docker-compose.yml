@@ -9,7 +9,7 @@ services:
       - gosrc:/go
       - .:/go/src/${API_BASE_DIR}/${API_NAME}
     env_file: 
-      - custom.env
+      - .env
     ports: 
       - "${PORT}:${PORT}"
     environment:
@@ -31,7 +31,7 @@ services:
     container_name: ${POSTGRES_HOST}
     image: postgres:10-alpine
     ports:
-      - "${DB_PORT}:5432"
+      - "${DB_PORT}:5433"
     volumes: 
       - postgres_data:/var/lib/postgresql/data
     environment:

@@ -421,6 +421,352 @@
                 }
             }
         },
+        "/fuente_financiamiento/": {
+            "get": {
+                "tags": [
+                    "fuente_financiamiento"
+                ],
+                "description": "get FuenteFinanciamiento",
+                "operationId": "FuenteFinanciamientoController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamiento"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "fuente_financiamiento"
+                ],
+                "description": "create FuenteFinanciamiento",
+                "operationId": "FuenteFinanciamientoController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for FuenteFinanciamiento content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamiento"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.FuenteFinanciamiento"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/fuente_financiamiento/{id}": {
+            "get": {
+                "tags": [
+                    "fuente_financiamiento"
+                ],
+                "description": "get FuenteFinanciamiento by id",
+                "operationId": "FuenteFinanciamientoController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamiento"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "fuente_financiamiento"
+                ],
+                "description": "update the FuenteFinanciamiento",
+                "operationId": "FuenteFinanciamientoController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for FuenteFinanciamiento content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamiento"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamiento"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "fuente_financiamiento"
+                ],
+                "description": "delete the FuenteFinanciamiento",
+                "operationId": "FuenteFinanciamientoController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/fuente_financiamiento_apropiacion/": {
+            "get": {
+                "tags": [
+                    "fuente_financiamiento_apropiacion"
+                ],
+                "description": "get FuenteFinanciamientoApropiacion",
+                "operationId": "FuenteFinanciamientoApropiacionController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamientoApropiacion"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "fuente_financiamiento_apropiacion"
+                ],
+                "description": "create FuenteFinanciamientoApropiacion",
+                "operationId": "FuenteFinanciamientoApropiacionController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for FuenteFinanciamientoApropiacion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamientoApropiacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.FuenteFinanciamientoApropiacion"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/fuente_financiamiento_apropiacion/{id}": {
+            "get": {
+                "tags": [
+                    "fuente_financiamiento_apropiacion"
+                ],
+                "description": "get FuenteFinanciamientoApropiacion by id",
+                "operationId": "FuenteFinanciamientoApropiacionController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamientoApropiacion"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "fuente_financiamiento_apropiacion"
+                ],
+                "description": "update the FuenteFinanciamientoApropiacion",
+                "operationId": "FuenteFinanciamientoApropiacionController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for FuenteFinanciamientoApropiacion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamientoApropiacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamientoApropiacion"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "fuente_financiamiento_apropiacion"
+                ],
+                "description": "delete the FuenteFinanciamientoApropiacion",
+                "operationId": "FuenteFinanciamientoApropiacionController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
         "/rama/": {
             "get": {
                 "tags": [
@@ -804,6 +1150,179 @@
                     }
                 }
             }
+        },
+        "/tipo_fuente_financiamiento/": {
+            "get": {
+                "tags": [
+                    "tipo_fuente_financiamiento"
+                ],
+                "description": "get TipoFuenteFinanciamiento",
+                "operationId": "TipoFuenteFinanciamientoController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoFuenteFinanciamiento"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipo_fuente_financiamiento"
+                ],
+                "description": "create TipoFuenteFinanciamiento",
+                "operationId": "TipoFuenteFinanciamientoController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoFuenteFinanciamiento content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoFuenteFinanciamiento"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TipoFuenteFinanciamiento"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_fuente_financiamiento/{id}": {
+            "get": {
+                "tags": [
+                    "tipo_fuente_financiamiento"
+                ],
+                "description": "get TipoFuenteFinanciamiento by id",
+                "operationId": "TipoFuenteFinanciamientoController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoFuenteFinanciamiento"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipo_fuente_financiamiento"
+                ],
+                "description": "update the TipoFuenteFinanciamiento",
+                "operationId": "TipoFuenteFinanciamientoController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoFuenteFinanciamiento content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoFuenteFinanciamiento"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoFuenteFinanciamiento"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipo_fuente_financiamiento"
+                ],
+                "description": "delete the TipoFuenteFinanciamiento",
+                "operationId": "TipoFuenteFinanciamientoController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -861,6 +1380,52 @@
                 }
             }
         },
+        "models.FuenteFinanciamiento": {
+            "title": "FuenteFinanciamiento",
+            "type": "object",
+            "properties": {
+                "Codigo": {
+                    "type": "string"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "FechaCreacion": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "TipoFuenteFinanciamiento": {
+                    "$ref": "#/definitions/models.TipoFuenteFinanciamiento"
+                }
+            }
+        },
+        "models.FuenteFinanciamientoApropiacion": {
+            "title": "FuenteFinanciamientoApropiacion",
+            "type": "object",
+            "properties": {
+                "ApropiacionId": {
+                    "$ref": "#/definitions/models.Apropiacion"
+                },
+                "Dependencia": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "FuenteFinanciamientoId": {
+                    "$ref": "#/definitions/models.FuenteFinanciamiento"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
         "models.Rama": {
             "title": "Rama",
             "type": "object",
@@ -903,6 +1468,22 @@
                     "format": "int64"
                 }
             }
+        },
+        "models.TipoFuenteFinanciamiento": {
+            "title": "TipoFuenteFinanciamiento",
+            "type": "object",
+            "properties": {
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
         }
     },
     "tags": [
@@ -921,6 +1502,18 @@
         {
             "name": "estado_apropiacion",
             "description": "EstadoApropiacionController operations for EstadoApropiacion\n"
+        },
+        {
+            "name": "tipo_fuente_financiamiento",
+            "description": "TipoFuenteFinanciamientoController operations for TipoFuenteFinanciamiento\n"
+        },
+        {
+            "name": "fuente_financiamiento",
+            "description": "FuenteFinanciamientoController operations for FuenteFinanciamiento\n"
+        },
+        {
+            "name": "fuente_financiamiento_apropiacion",
+            "description": "FuenteFinanciamientoApropiacionController operations for FuenteFinanciamientoApropiacion\n"
         }
     ]
 }
