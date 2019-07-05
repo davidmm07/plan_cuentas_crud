@@ -678,6 +678,34 @@
                 }
             }
         },
+        "/fuente_financiamiento_apropiacion/registrar_multiple": {
+            "post": {
+                "tags": [
+                    "fuente_financiamiento_apropiacion"
+                ],
+                "description": "Crea una nueva fuente de financiamiento con la relación de sus rubros y sus dependencias a los rubros",
+                "operationId": "FuenteFinanciamientoApropiacionController.RegistrarMultiple",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for FuenteFinanciamientoApropiacion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.FuenteFinanciamientoApropiacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} int[]"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
         "/fuente_financiamiento_apropiacion/{id}": {
             "get": {
                 "tags": [
