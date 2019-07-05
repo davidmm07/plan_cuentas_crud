@@ -11,7 +11,7 @@ import (
 )
 
 type FuenteFinanciamiento struct {
-	Id                       int                       `orm:"column(id);pk"`
+	Id                       int                       `orm:"column(id);pk;auto"`
 	Nombre                   string                    `orm:"column(nombre)"`
 	Descripcion              string                    `orm:"column(descripcion);null"`
 	FechaCreacion            time.Time                 `orm:"column(fecha_creacion);type(date);null"`

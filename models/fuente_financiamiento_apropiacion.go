@@ -10,7 +10,7 @@ import (
 )
 
 type FuenteFinanciamientoApropiacion struct {
-	Id                     int                   `orm:"column(id);pk"`
+	Id                     int                   `orm:"column(id);pk;auto"`
 	ApropiacionId          *Apropiacion          `orm:"column(apropiacion_id);rel(fk)"`
 	FuenteFinanciamientoId *FuenteFinanciamiento `orm:"column(fuente_financiamiento_id);rel(fk)"`
 	Dependencia            int                   `orm:"column(dependencia)"`
