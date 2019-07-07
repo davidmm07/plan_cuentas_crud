@@ -3,11 +3,15 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"github.com/udistrital/plan_cuentas_crud/models"
+	"log"
 	"strconv"
 	"strings"
 
 	"github.com/astaxie/beego"
+	fuenteApropiacionManager "github.com/udistrital/plan_cuentas_crud/managers/fuenteApropiacionManager"
+	"github.com/udistrital/plan_cuentas_crud/models"
+	utilidades "github.com/udistrital/plan_cuentas_crud/utilidades"
+	"github.com/udistrital/utils_oas/responseformat"
 )
 
 // FuenteFinanciamientoApropiacionController operations for FuenteFinanciamientoApropiacion
@@ -22,6 +26,30 @@ func (c *FuenteFinanciamientoApropiacionController) URLMapping() {
 	c.Mapping("GetAll", c.GetAll)
 	c.Mapping("Put", c.Put)
 	c.Mapping("Delete", c.Delete)
+	c.Mapping("RegistrarMultiple", c.RegistrarMultiple)
+}
+
+// RegistrarMultiple ...
+// @Title RegistrarMultiple
+// @Description Crea una nueva fuente de financiamiento con la relación de sus rubros y sus dependencias a los rubros
+// @Param	body		body 	models.FuenteFinanciamientoApropiacion	true		"body for FuenteFinanciamientoApropiacion content"
+// @Success 201 {int} int[]
+// @Failure 403 body is empty
+// @router /registrar_multiple [post]
+func (c *FuenteFinanciamientoApropiacionController) RegistrarMultiple() {
+	var v []*models.FuenteFinanciamientoApropiacion
+
+	defer utilidades.ErrorResponse(c.Controller)
+
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
+		log.Panicln(err.Error())
+	}
+
+	ids := fuenteApropiacionManager.RegistrarMultipleManager(v)
+
+	response := make(map[string]interface{})
+	response["Ids"] = ids
+	responseformat.SetResponseFormat(&c.Controller, response, "", 200)
 }
 
 // Post ...
