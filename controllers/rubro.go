@@ -79,8 +79,8 @@ func (c *RubroController) GetOne() {
 		c.Data["json"] = err.Error()
 	} else {
 		c.Data["json"] = v
+
 	}
-	c.ServeJSON()
 }
 
 // GetAll ...
@@ -175,7 +175,6 @@ func (c *RubroController) Put() {
 	} else {
 		c.Data["json"] = err.Error()
 	}
-	c.ServeJSON()
 }
 
 // Delete ...
