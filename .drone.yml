@@ -27,6 +27,7 @@ steps:
   - name: go_test
     image: golang:1.12
     commands:
+     - go get -t
      - go get -u gopkg.in/alecthomas/gometalinter.v1
      - gometalinter.v1 --install
      - go get github.com/axw/gocov/...
